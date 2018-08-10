@@ -40,6 +40,14 @@ public class DDDD {
             System.out.println(MAX_ARRAY_SIZE + " -> 默认最大大小 MAX_ARRAY_SIZE = Integer.MAX_VALUE - 8");
 
             arrayList.clear();
+            /**
+             * 主线程等待子线程都结束后，再执行
+             * 第一种方法是使用CountDownLatch
+             * 第二种方法是所有子线程都进行thread.join()
+             * 第三种方法是使用同步屏障，所有子线程在线程最后cyclicBarrier.await()，主线程也cyclicBarrier.await() --- 不一定对
+             */
+
+
             CountDownLatch countDownLatch = new CountDownLatch(Integer.MAX_VALUE - 8);
             ExecutorService executorService = Executors.newFixedThreadPool(20);
 
